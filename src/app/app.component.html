@@ -10,6 +10,6 @@
   </li>
 </ul>
 
-<div *ngFor="let filme of filmes">
+<div *ngFor="let filme of filmes$ | async">
     <li>{{ filme.title }}</li>
 </div>
