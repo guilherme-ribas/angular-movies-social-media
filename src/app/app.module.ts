@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FilmeListaComponent } from './filme-lista/filme-lista.component';
-import { FilmeCardComponent } from './filme-card/filme-card.component'
+import { FilmeCardComponent } from './filme-card/filme-card.component';
+import { FilmeDescricaoPipe } from './filme-card/filme-descricao.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     FilmeListaComponent,
-    FilmeCardComponent
+    FilmeCardComponent,
+    FilmeDescricaoPipe
   ],
   imports: [
     BrowserModule,

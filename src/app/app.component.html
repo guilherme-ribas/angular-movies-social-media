@@ -9,7 +9,11 @@
       <button (click)="searchMovie(filme.value)" type="button" class="btn btn-primary">Buscar</button>
   </li>
 </ul>
-
-<div *ngFor="let filme of filmes$ | async">
-    <li>{{ filme.title }}</li>
+<div class="row">
+  <div class="col-sm-4" *ngFor="let filme of filmes$ | async">
+    <div >
+      <app-filme-card [filme]="filme"></app-filme-card>
+    </div>
+  </div>
 </div>
+
