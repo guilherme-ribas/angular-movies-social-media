@@ -1,14 +1,29 @@
 
-<ul class="nav justify-content-center">
-  <li class="nav-item">
-      <div class="form-group ">
-        <label for="exampleInputEmail1">Digite o nome do filme</label>
-        <input #filme  type="text" class="form-control" id="filme" >
-        <small  id="filme" class="form-text text-muted">Digite o nome do filme em português</small>
-      </div>
-      <button (click)="searchMovie(filme.value)" type="button" class="btn btn-primary">Buscar</button>
-  </li>
-</ul>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">NG-Movies</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Filmes <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Séries</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Fóruns</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input #filme class="form-control mr-sm-2" type="search" placeholder="Pesquisar..." aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" (click)="searchMovie(filme.value)" type="submit">Buscar</button>
+    </form>
+  </div>
+</nav>
 <div class="row">
   <div class="col-sm-4" *ngFor="let filme of filmes$ | async">
     <div >

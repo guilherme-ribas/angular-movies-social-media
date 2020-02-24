@@ -1,11 +1,12 @@
 <div class="msm-card">
   <div class="row">
     <div class="col-sm-3">
-      <img style="width: 100%;" src="https://image.tmdb.org/t/p/w500/{{ filme.poster_path }}" alt="">
+      <img *ngIf="filme.poster_path"  style="width: 100%;" src="https://image.tmdb.org/t/p/w500/{{ filme.poster_path }}" alt="">
+      <img *ngIf="!filme.poster_path"  style="width: 100%;" src="../../assets/card-default.png" alt="">
     </div>
     <div class="col-sm-9">
-      <h4> {{ filme.title }}</h4>
-      <p>{{ filme.overview | descricao}}</p>
+      <h4> {{ filme.title | filme: 'title' }}</h4>
+      <p>{{ filme.overview | filme: 'overview'}}</p>
     </div>
 
   </div>

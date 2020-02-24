@@ -7,14 +7,14 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FilmeListaComponent } from './filme-lista/filme-lista.component';
 import { FilmeCardComponent } from './filme-card/filme-card.component';
-import { FilmeDescricaoPipe } from './filme-card/filme-descricao.pipe';
+import { FilmePipe } from './filme-card/filme.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     FilmeListaComponent,
     FilmeCardComponent,
-    FilmeDescricaoPipe
+    FilmePipe
   ],
   imports: [
     BrowserModule,
