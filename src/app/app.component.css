@@ -1,0 +1,12 @@
+:host /deep/ .page-link {
+  background-color:#D9C2AD !important;
+  border: 1px solid #735A51 !important;
+  color: #40363C !important;
+}
+
+:host /deep/  .active .page-link {
+  background-color: #40363C !important;
+  color: white !important;
+}
+
+
