@@ -19,16 +19,25 @@
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <input #filme class="form-control mr-sm-2" type="search" placeholder="Pesquisar..." aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" (click)="searchMovie(filme.value)" type="submit">Buscar</button>
+      <input name="busca" [(ngModel)]="busca" class="form-control mr-sm-2" type="search" placeholder="Pesquisar..." aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" (click)="searchMovie()" type="submit">Buscar</button>
     </form>
   </div>
 </nav>
+
 <div class="row">
   <div class="col-sm-4" *ngFor="let filme of filmes$ | async">
     <div >
       <app-filme-card [filme]="filme"></app-filme-card>
     </div>
+  </div>
+</div>
+
+<div [hidden]="!paginas" style="align-items: center; display: flex;"  class="row">
+  <div class="col-xs-12 col-12">
+    <pagination [boundaryLinks]="true"  [totalItems]="paginas" [maxSize]="10"
+    previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"
+    (pageChanged)="searchMovie($event.page)"></pagination>
   </div>
 </div>
 
