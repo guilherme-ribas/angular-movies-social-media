@@ -33,11 +33,13 @@
   </div>
 </div>
 
-<div [hidden]="!paginas" style="align-items: center; display: flex;"  class="row">
-  <div class="col-xs-12 col-12">
-    <pagination [boundaryLinks]="true"  [totalItems]="paginas" [maxSize]="10"
-    previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"
-    (pageChanged)="searchMovie($event.page)"></pagination>
+<div class=" d-flex justify-content-center">
+  <div [hidden]="!paginas"   class="row">
+    <div class="col-xs-12 col-12">
+      <pagination [boundaryLinks]="true"  [totalItems]="paginas" [maxSize]="10"
+      previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"
+      (pageChanged)="searchMovie($event.page)"></pagination>
+    </div>
   </div>
 </div>
 
