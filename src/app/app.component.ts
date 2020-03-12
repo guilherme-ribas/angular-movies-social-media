@@ -15,30 +15,43 @@ export class AppComponent implements OnInit {
   constructor(private filmeService: FilmeService) {}
   title = 'angular-movies-social-media';
 
-  filmes$: Observable<any[]>;
+  resultados$: Observable<any[]>;
   busca: string;
   paginas: number;
-  currentPage = 4;
+  currentPage = 1;
+  menu: string = 'movie';
 
   ngOnInit(): void {
-    const busca = localStorage.getItem('busca');
-    const pagina = localStorage.getItem('pagina');
-    if(busca && pagina){
-      this.busca = busca;
-      this.currentPage = parseInt(pagina);
-      this.searchMovie(parseInt(pagina));
-    }
+
   }
 
 
   searchMovie(pagina = 1) {
-    this.filmes$ = this.filmeService.loadByName(this.busca, pagina).pipe(
+    this.resultados$ = this.filmeService.search(this.busca, pagina, this.menu).pipe(
       tap((dados: any) => this.paginas = dados.total_pages),
       map((filmes: any) => filmes.results),
       );
+  }
 
-    localStorage.setItem('busca', this.busca);
-    localStorage.setItem('pagina', pagina.toString());
+  destaques(pagina = 1){
+    this.resultados$ = this.filmeService.searchPopular(pagina).pipe(
+      tap((dados: any) => this.paginas = dados.total_pages),
+      map((filmes: any) => filmes.results),
+      );
+  }
+
+  paginator(pagina){
+    if (this.menu !== 'destaque') {
+      this.searchMovie(pagina);
+    } else {
+      this.destaques(pagina);
+    }
+
+  }
+
+  opcaoMenu(valor) {
+    this.menu = valor;
+    this.searchMovie();
   }
 
 

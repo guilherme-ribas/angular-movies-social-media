@@ -8,14 +8,14 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Filmes <span class="sr-only">(current)</span></a>
+      <li class="nav-item" [class.active]="menu === 'movie'">
+        <a class="nav-link" (click)="opcaoMenu('movie')"  routerLink=".">Filmes </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Séries</a>
+      <li class="nav-item" [class.active]="menu === 'tv'">
+        <a class="nav-link" (click)="opcaoMenu('tv')" routerLink=".">Séries</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Fóruns</a>
+      <li class="nav-item" [class.active]="menu === 'destaque'">
+        <a class="nav-link" (click)="destaques(); menu = 'destaque'"  routerLink=".">Em alta</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -26,14 +26,14 @@
 </nav>
 
 <div class="row">
-  <div class="col-sm-4" *ngFor="let filme of filmes$ | async">
+  <div class="col-sm-4" *ngFor="let resultado of resultados$ | async">
     <div >
-      <app-filme-card [filme]="filme"></app-filme-card>
+      <app-filme-card [filme]="resultado"></app-filme-card>
     </div>
   </div>
 </div>
 
-<div *ngIf="paginas"  class=" d-flex justify-content-center">
+<div class=" d-flex justify-content-center">
   <div [hidden]="!paginas"   class="row">
     <div class="col-xs-12 col-12">
       <pagination [(ngModel)]="currentPage" [totalItems]="paginas" [maxSize]="10"

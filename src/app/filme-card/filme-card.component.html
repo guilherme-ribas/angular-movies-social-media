@@ -5,7 +5,7 @@
       <img *ngIf="!filme.poster_path"  style="width: 100%;" src="../../assets/card-default.png" alt="">
     </div>
     <div class="col-sm-9">
-      <h4> {{ filme.title | filme: 'title' }}</h4>
+      <h4> {{ filme.title ? filme.title : filme.original_name | filme: 'title' }}</h4>
       <p>{{ filme.overview | filme: 'overview'}}</p>
     </div>
 
