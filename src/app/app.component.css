@@ -9,3 +9,8 @@
   color: white !important;
 }
 
+.nao-encontrado {
+  margin-left: 10px;
+  color: white;
+  font-size: 20px;
+}

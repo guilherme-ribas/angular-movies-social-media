@@ -20,7 +20,7 @@
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input name="busca" [(ngModel)]="busca" class="form-control mr-sm-2" type="search" placeholder="Pesquisar..." aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" (click)="searchMovie()" type="submit">Buscar</button>
+      <button class="btn btn-outline-success my-2 my-sm-0"[disabled]="!busca" (click)="searchMovie()" type="submit">Buscar</button>
     </form>
   </div>
 </nav>
@@ -32,6 +32,11 @@
     </div>
   </div>
 </div>
+
+<div class="nao-encontrado" *ngIf="(resultados$ | async) && (resultados$ | async).length < 1" >
+  Não foram encontrados resultado para a sua pesquisa!
+</div>
+
 
 <div [class.fixed-bottom]="(resultados$ | async) && (resultados$ | async).length < 10" class=" d-flex fixed-bottom justify-content-center">
   <div [hidden]="!paginas"   class="row">
