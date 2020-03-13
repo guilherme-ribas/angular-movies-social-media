@@ -33,12 +33,12 @@
   </div>
 </div>
 
-<div class=" d-flex justify-content-center">
+<div [class.fixed-bottom]="(resultados$ | async) && (resultados$ | async).length < 10" class=" d-flex fixed-bottom justify-content-center">
   <div [hidden]="!paginas"   class="row">
     <div class="col-xs-12 col-12">
       <pagination [(ngModel)]="currentPage" [totalItems]="paginas" [maxSize]="10"
       previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"
-      (pageChanged)="searchMovie($event.page)"></pagination>
+      (pageChanged)="paginator($event.page)"></pagination>
     </div>
   </div>
 </div>

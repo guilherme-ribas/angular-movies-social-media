@@ -27,6 +27,9 @@ export class AppComponent implements OnInit {
 
 
   searchMovie(pagina = 1) {
+    if (this.menu === 'destaque') {
+      this.menu = 'movie';
+    }
     this.resultados$ = this.filmeService.search(this.busca, pagina, this.menu).pipe(
       tap((dados: any) => this.paginas = dados.total_pages),
       map((filmes: any) => filmes.results),
@@ -34,6 +37,7 @@ export class AppComponent implements OnInit {
   }
 
   destaques(pagina = 1){
+    this.currentPage = 1;
     this.resultados$ = this.filmeService.searchPopular(pagina).pipe(
       tap((dados: any) => this.paginas = dados.total_pages),
       map((filmes: any) => filmes.results),
@@ -51,7 +55,10 @@ export class AppComponent implements OnInit {
 
   opcaoMenu(valor) {
     this.menu = valor;
-    this.searchMovie();
+    this.currentPage = 1;
+    if (this.busca) {
+      this.searchMovie();
+    }
   }
 
 
