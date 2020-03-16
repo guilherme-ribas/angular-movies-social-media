@@ -8,15 +8,16 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+      <li class="nav-item" [class.active]="menu === 'destaque'">
+        <a class="nav-link" (click)="destaques(); menu = 'destaque'"  routerLink=".">Em alta</a>
+      </li>
       <li class="nav-item" [class.active]="menu === 'movie'">
         <a class="nav-link" (click)="opcaoMenu('movie')"  routerLink=".">Filmes </a>
       </li>
       <li class="nav-item" [class.active]="menu === 'tv'">
         <a class="nav-link" (click)="opcaoMenu('tv')" routerLink=".">Séries</a>
       </li>
-      <li class="nav-item" [class.active]="menu === 'destaque'">
-        <a class="nav-link" (click)="destaques(); menu = 'destaque'"  routerLink=".">Em alta</a>
-      </li>
+
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input name="busca" [(ngModel)]="busca" class="form-control mr-sm-2" type="search" placeholder="Pesquisar..." aria-label="Search">

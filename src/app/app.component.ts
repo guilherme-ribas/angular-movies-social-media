@@ -1,4 +1,4 @@
-import { FilmeService } from './filme.service';
+import { BuscaService } from './busca.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
@@ -12,7 +12,7 @@ import { tap, map } from 'rxjs/operators';
 
 export class AppComponent implements OnInit {
 
-  constructor(private filmeService: FilmeService) {}
+  constructor(private filmeService: BuscaService) {}
   title = 'angular-movies-social-media';
 
   resultados$: Observable<any[]>;
