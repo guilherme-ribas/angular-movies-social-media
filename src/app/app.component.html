@@ -34,9 +34,10 @@
   </div>
 </div>
 
-<div class="nao-encontrado" *ngIf="(resultados$ | async) && (resultados$ | async).length < 1" >
+<div class="mensagem" *ngIf="(resultados$ | async) && (resultados$ | async).length < 1" >
   Não foram encontrados resultado para a sua pesquisa!
 </div>
+
 
 
 <div [class.fixed-bottom]="(resultados$ | async) && (resultados$ | async).length < 10" class=" d-flex fixed-bottom justify-content-center">
