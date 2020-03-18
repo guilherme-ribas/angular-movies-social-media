@@ -8,14 +8,11 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item" [class.active]="menu === 'destaque'">
-        <a class="nav-link" (click)="destaques(); menu = 'destaque'"  routerLink=".">Em alta</a>
-      </li>
       <li class="nav-item" [class.active]="menu === 'movie'">
-        <a class="nav-link" (click)="opcaoMenu('movie')"  routerLink=".">Filmes </a>
+        <a class="nav-link" (click)="clickMenu('movie')"  routerLink=".">Filmes </a>
       </li>
       <li class="nav-item" [class.active]="menu === 'tv'">
-        <a class="nav-link" (click)="opcaoMenu('tv')" routerLink=".">Séries</a>
+        <a class="nav-link" (click)="clickMenu('tv')" routerLink=".">Séries</a>
       </li>
 
     </ul>

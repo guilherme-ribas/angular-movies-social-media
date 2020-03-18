@@ -23,16 +23,18 @@ export class BuscaService {
       );
   }
 
-  searchPopular(pagina = 1) {
+  searchPopular(pagina = 1, tipo) {
     let params = new HttpParams();
     params = params.set('api_key', environment.API_KEY);
     params = params.set('language', 'pt-PT');
     params = params.set('page', pagina.toString());
-    return this.http.get(`https://api.themoviedb.org/3/movie/popular`, { params })
+    return this.http.get(`https://api.themoviedb.org/3/${tipo}/popular`, { params })
       .pipe(
         take(1),
       );
   }
+
+
 
   loadSerieByName(nome: string, pagina = 1) {
     let params = new HttpParams();

@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   busca: string;
   paginas: number;
   currentPage = 1;
-  menu: string = 'destaque';
+  menu: string = 'movie';
   complete = true;
 
   ngOnInit(): void {
@@ -45,7 +45,7 @@ export class AppComponent implements OnInit {
   destaques(pagina = 1){
     this.complete = false;
     this.currentPage = 1;
-    this.resultados$ = this.filmeService.searchPopular(pagina).pipe(
+    this.resultados$ = this.filmeService.searchPopular(pagina, this.menu).pipe(
       tap((dados: any) => this.paginas = dados.total_pages),
       map((filmes: any) => {
         this.complete = true;
@@ -54,23 +54,23 @@ export class AppComponent implements OnInit {
       );
   }
 
+  clickMenu(tipo: string) {
+    this.menu = tipo;
+    this.currentPage = 1;
+    if (this.busca) {
+      this.searchMovie();
+    } else {
+      this.destaques();
+    }
+  }
+
   paginator(pagina){
-    if (this.menu !== 'destaque') {
+    if (this.menu !== 'destaque' && this.busca) {
       this.searchMovie(pagina);
     } else {
       this.destaques(pagina);
     }
 
   }
-
-  opcaoMenu(valor) {
-    this.menu = valor;
-    this.currentPage = 1;
-    if (this.busca) {
-      this.searchMovie();
-    }
-  }
-
-
 
 }
