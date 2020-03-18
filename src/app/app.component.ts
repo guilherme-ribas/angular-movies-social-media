@@ -1,7 +1,5 @@
-import { BuscaService } from './busca.service';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { tap, map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,63 +8,21 @@ import { tap, map } from 'rxjs/operators';
 })
 
 
-export class AppComponent implements OnInit {
+export class AppComponent {
 
-  constructor(private filmeService: BuscaService) {}
+  constructor(private router: Router) {}
   title = 'angular-movies-social-media';
 
-  resultados$: Observable<any[]>;
   busca: string;
-  paginas: number;
-  currentPage = 1;
-  menu: string = 'movie';
-  complete = true;
-
-  ngOnInit(): void {
-    this.destaques();
-  }
-
-
-  searchMovie(pagina = 1) {
-    this.complete = false;
-    this.resultados$ = this.filmeService.search(this.busca, pagina, this.menu).pipe(
-      tap((dados: any) => this.paginas = dados.total_pages),
-      map((filmes: any) => {
-        this.complete = true;
-        return filmes.results;
-      }),
-      );
-  }
-
-  destaques(pagina = 1){
-    this.complete = false;
-    this.currentPage = 1;
-    this.resultados$ = this.filmeService.searchPopular(pagina, this.menu).pipe(
-      tap((dados: any) => this.paginas = dados.total_pages),
-      map((filmes: any) => {
-        this.complete = true;
-        return filmes.results;
-      }),
-      );
-  }
+  menu = 'movie';
 
   clickMenu(tipo: string) {
     this.menu = tipo;
-    this.currentPage = 1;
-    if (this.busca) {
-      this.searchMovie();
-    } else {
-      this.destaques();
-    }
+    this.buscar();
   }
 
-  paginator(pagina){
-    if (this.menu !== 'destaque' && this.busca) {
-      this.searchMovie(pagina);
-    } else {
-      this.destaques(pagina);
-    }
-
+  buscar() {
+    this.router.navigate(['home', this.menu, this.busca ? this.busca : '0']);
   }
 
 }

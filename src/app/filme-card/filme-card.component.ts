@@ -1,3 +1,4 @@
+import { BuscaService } from './../busca.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Filme } from './filme';
 
@@ -10,9 +11,13 @@ export class FilmeCardComponent implements OnInit {
 
   @Input() filme: Filme;
 
-  constructor() { }
+  constructor(private buscaService: BuscaService) { }
 
   ngOnInit() {
+  }
+
+  detalhar() {
+    this.buscaService.getDetails(this.filme.id).subscribe(filme => console.log(filme));
   }
 
 }

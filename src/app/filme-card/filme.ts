@@ -3,4 +3,5 @@ export class Filme {
   overview: string;
   poster_path: string;
   original_name: string;
+  id: string;
 }
