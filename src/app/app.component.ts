@@ -29,10 +29,6 @@ export class AppComponent implements OnInit {
 
   searchMovie(pagina = 1) {
     this.complete = false;
-    if (this.menu === 'destaque') {
-      this.menu = 'movie';
-    }
-
     this.resultados$ = this.filmeService.search(this.busca, pagina, this.menu).pipe(
       tap((dados: any) => this.paginas = dados.total_pages),
       map((filmes: any) => {
