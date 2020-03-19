@@ -1,4 +1,4 @@
-import { FilmeDetalhe } from './filme-detalhe/filme-detalhe';
+import { FilmeDetalhe, MovieVideos } from './filme-detalhe/filme-detalhe';
 import { environment } from '../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -29,6 +29,16 @@ export class BuscaService {
     params = params.set('api_key', environment.API_KEY);
     params = params.set('language', 'pt-PT');
     return this.http.get<FilmeDetalhe>(`https://api.themoviedb.org/3/movie/${movieId}`, { params })
+      .pipe(
+        take(1),
+      );
+  }
+
+  getVideos(movieId){
+    let params = new HttpParams();
+    params = params.set('api_key', environment.API_KEY);
+    params = params.set('language', 'pt-PT');
+    return this.http.get<MovieVideos>(`https://api.themoviedb.org/3/movie/${movieId}/videos`, { params })
       .pipe(
         take(1),
       );

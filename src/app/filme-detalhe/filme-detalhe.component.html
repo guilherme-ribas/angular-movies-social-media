@@ -1,18 +1,45 @@
 
-<div class="detalhe container">
- <h4>Popularidade</h4> {{ detalhe.popularity}}
-  <h4>Generos</h4>
-  <ul>
-    <li *ngFor="let genero of detalhe.genres" > {{ genero.name }}</li>
-  </ul>
-  <h4>Sinópes</h4> {{ detalhe.overview }}
-  <h4>DATA DE LANÇAMENTO</h4> {{ detalhe.release_date }}
-  <h4> PAÍSES GRAVADOS </h4>
-  <ul>
-    <li *ngFor="let pais of detalhe.production_countries" > {{ pais.name }}</li>
-  </ul>
-  <h4>PRODUTORAS</h4>
-  <ul>
-    <li *ngFor="let produtora of detalhe.production_companies" > {{ produtora.name }}</li>
-  </ul>
+<div *ngIf="detalhe"  class="detalhe container">
+  <div class="row">
+    <div class="col-sm-4">
+      <img *ngIf="detalhe.poster_path"  style="width: 100%;" src="https://image.tmdb.org/t/p/w500/{{ detalhe.poster_path }}" alt="">
+      <img *ngIf="!detalhe.poster_path"  style="width: 100%;" src="../../assets/card-default.png" alt="">
+    </div>
+    <div class="col-sm-8">
+      <div class="row">
+        <div class="col-sm-12">
+          <h4>Sinopse</h4> {{ detalhe.overview }}
+        </div>
+        <div class="col-sm-6">
+          <h4>Popularidade</h4> {{ detalhe.popularity}}
+          <h4 >Generos</h4>
+          <ul>
+            <li *ngFor="let genero of detalhe.genres" > {{ genero.name }}</li>
+          </ul>
+        </div>
+        <div class="col-sm-6">
+          <h4>DATA DE LANÇAMENTO</h4> {{ detalhe.release_date }}
+          <h4> PAÍSES GRAVADOS </h4>
+          <ul>
+            <li *ngFor="let pais of detalhe.production_countries" > {{ pais.name }}</li>
+          </ul>
+          <h4>PRODUTORAS</h4>
+          <ul>
+            <li *ngFor="let produtora of detalhe.production_companies" > {{ produtora.name }}</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+    <img *ngIf="detalhe.poster_path"  style="width: 100%;" src="https://image.tmdb.org/t/p/w800/{{ detalhe.backdrop_path }}" alt="">
+    <img *ngIf="!detalhe.poster_path"  style="width: 100%;" src="../../assets/card-default.png" alt="">
+  </div>
+  <div *ngFor="let video of videos.results" >
+    <p>{{video.key}}</p>
+    <iframe width="560" height="315" [src]="getUrl(video.key)" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
 </div>

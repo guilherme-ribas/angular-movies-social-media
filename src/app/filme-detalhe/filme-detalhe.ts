@@ -3,6 +3,8 @@ export class FilmeDetalhe {
   popularity: number;
   genres = new Array<Genres>();
   overview: string;
+  poster_path: string;
+  backdrop_path: string;
   release_date: string;
   production_companies = new Array<ProductionCompanies>();
   production_countries = new Array<ProductionCountries>();
@@ -23,4 +25,20 @@ class ProductionCompanies {
 class ProductionCountries {
   iso_3166_1: string;
   name: string;
+}
+
+export class MovieVideos {
+  id: number;
+  results = new Array<VideoResults>();
+}
+
+class VideoResults {
+  id: number;
+  iso_639_1: string;
+  iso_3166_1: string;
+  key: string;
+  name: string;
+  site: string;
+  size: number;
+  type: string;
 }
