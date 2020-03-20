@@ -3,11 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FilmeDetalhe, MovieVideos } from './filme-detalhe';
 import { tap, switchMap } from 'rxjs/operators';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-filme-detalhe',
   templateUrl: './filme-detalhe.component.html',
-  styleUrls: ['./filme-detalhe.component.css']
+  styleUrls: ['./filme-detalhe.component.css'],
 })
 export class FilmeDetalheComponent implements OnInit {
 
@@ -15,7 +16,8 @@ export class FilmeDetalheComponent implements OnInit {
   videos: MovieVideos;
   constructor(
     private route: ActivatedRoute,
-    private buscaService: BuscaService
+    private buscaService: BuscaService,
+    private sanitazier: DomSanitizer
     ) { }
 
   ngOnInit() {
@@ -33,8 +35,7 @@ export class FilmeDetalheComponent implements OnInit {
   }
 
   getUrl(key){
-    console.log(key)
-    return `https://www.youtube.com/embed/${key}`;
+    return this.sanitazier.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${key}`);
   }
 
 }
