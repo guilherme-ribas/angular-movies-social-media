@@ -1,5 +1,6 @@
 export class FilmeDetalhe {
   id: number;
+  title: string;
   popularity: number;
   genres = new Array<Genres>();
   overview: string;

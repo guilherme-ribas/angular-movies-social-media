@@ -26,7 +26,7 @@ export class FilmeDetalheComponent implements OnInit {
 
   getDetalhe(id) {
     this.buscaService.getDetails(id).pipe(
-      tap(detalhe => this.detalhe = detalhe),
+      tap(detalhe =>{ this.detalhe = detalhe; console.log(detalhe)}),
       switchMap((result) => this.buscaService.getVideos(id))
     ).subscribe((videos: MovieVideos) => {
       this.videos = videos;

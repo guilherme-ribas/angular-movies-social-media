@@ -1,14 +1,21 @@
+
 .detalhe {
   color: white;
-  background-color: #735A51;
+  background-color: #40363C;
+  height: 100%;
 }
 
-.sinopse {
-
+.informacoes {
+  height: 520px;
+  overflow-x: visible;
+	overflow-y: scroll;
 }
 
-
+h3 {
+  color: white;
+}
 
 h4 {
   margin-top: 10px;
+  color: #D9C2AD;
 }

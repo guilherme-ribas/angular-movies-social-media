@@ -44,6 +44,17 @@ export class BuscaService {
       );
   }
 
+  getSimilar(movieId, page = 1){
+    let params = new HttpParams();
+    params = params.set('api_key', environment.API_KEY);
+    params = params.set('language', 'pt-PT');
+    params = params.set('page', page.toString());
+    return this.http.get<MovieVideos>(`https://api.themoviedb.org/3/movie/${movieId}/similar`, { params })
+      .pipe(
+        take(1),
+      );
+  }
+
 
   searchPopular(pagina = 1, tipo) {
     let params = new HttpParams();

@@ -1,38 +1,45 @@
 
 <div *ngIf="detalhe"  class="detalhe container">
-  <div class="row mb-2">
+  <div class="row mb-2 " data-spy="scroll" data-offset="0">
     <div class="col-sm-4 sinopse">
-      <img *ngIf="detalhe.poster_path"  style="width: 100%;" src="https://image.tmdb.org/t/p/w500/{{ detalhe.poster_path }}" alt="">
-      <img *ngIf="!detalhe.poster_path"  style="width: 100%;" src="../../assets/card-default.png" alt="">
+      <img *ngIf="detalhe.poster_path"  style="height: 520px;" src="https://image.tmdb.org/t/p/w500/{{ detalhe.poster_path }}" alt="">
+      <img *ngIf="!detalhe.poster_path"  style="height: 520px;" src="../../assets/card-default.png" alt="">
     </div>
     <div class="col-sm-8 informacoes">
       <div class="row">
         <div class="col-sm-12">
-          <h4>Sinopse</h4> {{ detalhe.overview }}
+          <h3> {{ detalhe.title }} </h3>
+        </div>
+        <div class="col-sm-12">
+          <h4>Sinopse</h4>
+          <p>
+            {{ detalhe.overview }}
+          </p>
         </div>
         <div class="col-sm-6">
-          <h4>Popularidade</h4> {{ detalhe.popularity}}
-          <h4>Data de Lançamento</h4> {{ detalhe.release_date }}
-          <div class="mt-3">
-            <img *ngIf="detalhe.poster_path"  style="width: 100%;" src="https://image.tmdb.org/t/p/w500/{{ detalhe.backdrop_path }}" alt="">
-            <img *ngIf="!detalhe.poster_path"  style="width: 100%;" src="../../assets/card-default.png" alt="">
-          </div>
-
-        </div>
-        <div class="col-sm-6">
-
+          <h4>Popularidade</h4> <p> {{ detalhe.popularity}} </p>
+          <h4>Data de Lançamento</h4> <p> {{ detalhe.release_date }} </p>
           <h4 >Generos</h4>
           <ul>
             <li *ngFor="let genero of detalhe.genres" > {{ genero.name }}</li>
           </ul>
-          <h4> Países gravados </h4>
-          <ul>
-            <li *ngFor="let pais of detalhe.production_countries" > {{ pais.name }}</li>
-          </ul>
+
           <h4>Produtoras</h4>
           <ul>
             <li *ngFor="let produtora of detalhe.production_companies" > {{ produtora.name }}</li>
           </ul>
+
+        </div>
+        <div class="col-sm-6">
+          <div class="mt-3">
+            <img *ngIf="detalhe.poster_path"  style="width: 100%;" src="https://image.tmdb.org/t/p/w500/{{ detalhe.backdrop_path }}" alt="">
+            <img *ngIf="!detalhe.poster_path"  style="width: 100%;" src="../../assets/card-default.png" alt="">
+          </div>
+          <h4> Países gravados </h4>
+          <ul>
+            <li *ngFor="let pais of detalhe.production_countries" > {{ pais.name }}</li>
+          </ul>
+
         </div>
 
       </div>
@@ -44,7 +51,11 @@
 
 
   </div>
+
   <div *ngFor="let video of videos.results" >
     <iframe width="560" height="315" [src]="getUrl(video.key)" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
+</div>
+<div>
+  <app-filme-card></app-filme-card>
 </div>
