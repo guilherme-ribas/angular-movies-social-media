@@ -55,7 +55,8 @@
   <div *ngFor="let video of videos.results" >
     <iframe width="560" height="315" [src]="getUrl(video.key)" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
+  <div *ngFor="let filme of filmes" >
+    <app-filme-card [filme]="filme"></app-filme-card>
+  </div>
 </div>
-<div>
-  <app-filme-card></app-filme-card>
-</div>
+

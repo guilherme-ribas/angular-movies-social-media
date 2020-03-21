@@ -49,7 +49,7 @@ export class BuscaService {
     params = params.set('api_key', environment.API_KEY);
     params = params.set('language', 'pt-PT');
     params = params.set('page', page.toString());
-    return this.http.get<MovieVideos>(`https://api.themoviedb.org/3/movie/${movieId}/similar`, { params })
+    return this.http.get(`https://api.themoviedb.org/3/movie/${movieId}/similar`, { params })
       .pipe(
         take(1),
       );

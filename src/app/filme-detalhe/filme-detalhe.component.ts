@@ -2,7 +2,7 @@ import { BuscaService } from './../busca.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FilmeDetalhe, MovieVideos } from './filme-detalhe';
-import { tap, switchMap } from 'rxjs/operators';
+import { tap, switchMap, map } from 'rxjs/operators';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
@@ -14,6 +14,7 @@ export class FilmeDetalheComponent implements OnInit {
 
   detalhe: FilmeDetalhe;
   videos: MovieVideos;
+  filmes: any;
   constructor(
     private route: ActivatedRoute,
     private buscaService: BuscaService,
@@ -27,10 +28,16 @@ export class FilmeDetalheComponent implements OnInit {
   getDetalhe(id) {
     this.buscaService.getDetails(id).pipe(
       tap(detalhe =>{ this.detalhe = detalhe; console.log(detalhe)}),
-      switchMap((result) => this.buscaService.getVideos(id))
-    ).subscribe((videos: MovieVideos) => {
-      this.videos = videos;
-      console.log(videos);
+      switchMap((result) => this.buscaService.getVideos(id)),
+      tap((videos: MovieVideos) => {
+        this.videos = videos;
+        console.log(videos);
+      } ),
+      switchMap((video: any) => this.buscaService.getSimilar(video.id)),
+      map((similiares: any) => similiares.results)
+    ).subscribe((filmes: any) => {
+      this.filmes = filmes;
+      console.log(filmes);
     } );
   }
 
