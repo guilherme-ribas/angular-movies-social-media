@@ -27,7 +27,7 @@ export class FilmeDetalheComponent implements OnInit {
 
   getDetalhe(id) {
     this.buscaService.getDetails(id).pipe(
-      tap(detalhe =>{ this.detalhe = detalhe; console.log(detalhe)}),
+      tap(detalhe => { this.detalhe = detalhe; console.log(detalhe) }),
       switchMap((result) => this.buscaService.getVideos(id)),
       tap((videos: MovieVideos) => {
         this.videos = videos;
@@ -41,8 +41,12 @@ export class FilmeDetalheComponent implements OnInit {
     } );
   }
 
-  getUrl(key){
+  getUrl(key) {
     return this.sanitazier.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${key}`);
+  }
+  getImageHight() {
+    let altura = document.getElementById('poster').offsetHeight;
+    return altura + 'px';
   }
 
 }
